@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sign Up - Path2Skill</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body {
+    font-family:'Inter', sans-serif;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background: linear-gradient(135deg, #F5F3FF, #EDE9FE, #DDD6FE);
+}
+
+/* CONTAINER */
+.container {
+    background: rgba(255,255,255,0.85);
+
+    padding:3rem 2.5rem;
+    border-radius:1.25rem;
+    width:90%;
+    max-width:450px;
+
+    border:1px solid rgba(255,255,255,0.6);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+
+    opacity:0;
+    transform: translateY(25px) scale(0.96);
+    animation: popIn 0.3s ease forwards;
+}
+
+@keyframes popIn {
+    to {
+        opacity:1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* TITLE */
+h2 {
+    font-family:'Plus Jakarta Sans';
+    text-align:center;
+    margin-bottom:2rem;
+    font-size:1.8rem;
+    color:#0F172A;
+
+    opacity:0;
+    transform: translateY(10px);
+    animation: fadeUp 0.3s ease forwards 0.15s;
+}
+
+/* FIELD */
+.field {
+    position: relative;
+    margin-bottom: 1.4rem;
+
+    opacity:0;
+    transform: translateY(15px);
+    animation: fadeUp 0.3s ease forwards;
+}
+
+.field:nth-of-type(1) { animation-delay:0.15s; }
+.field:nth-of-type(2) { animation-delay:0.25s; }
+.field:nth-of-type(3) { animation-delay:0.35s; }
+.field:nth-of-type(4) { animation-delay:0.45s; }
+.field:nth-of-type(5) { animation-delay:0.55s; }
+
+/* INPUT */
+.field input {
+    width:100%;
+    padding:1rem;
+    border:1px solid #E5E7EB;
+    border-radius:0.75rem;
+    font-size:1rem;
+    outline:none;
+    background:#FAFAFF;
+}
+
+/* LABEL */
+.field label {
+    position:absolute;
+    left:1rem;
+    top:50%;
+    transform: translateY(-50%);
+    color:#6B7280;
+    font-size:0.95rem;
+    pointer-events:none;
+
+    transition:0.15s ease;
+}
+
+/* FLOAT */
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label {
+    top:0;
+    transform: translateY(-50%) scale(0.85);
+    background:white;
+    padding:0 0.3rem;
+    color:#6D28D9;
+}
+
+/* FOCUS */
+.field input:focus {
+    border-color:#A78BFA;
+    box-shadow:0 0 0 3px rgba(167,139,250,0.2);
+}
+
+/* PASSWORD */
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 2.8rem;
+}
+
+/* 🔥 SLICK SVG ICON */
+.toggle-password {
+    position: absolute;
+    right: 0.9rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+
+    width:20px;
+    height:20px;
+    color:#64748B;
+    transition:0.15s;
+}
+
+.toggle-password:hover {
+    color:#6D28D9;
+}
+
+/* BUTTON */
+.btn-primary {
+    width:100%;
+    padding:1rem;
+    border:none;
+    border-radius:0.75rem;
+
+    font-weight:600;
+    font-size:1rem;
+    cursor:pointer;
+
+    background: linear-gradient(135deg, #8B5CF6, #6D28D9);
+    color:white;
+
+    transition:0.15s;
+
+    opacity:0;
+    transform: translateY(15px);
+    animation: fadeUp 0.3s ease forwards 0.8s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow:0 12px 30px rgba(139,92,246,0.3);
+}
+
+/* LINKS */
+.link {
+    text-align:center;
+    margin-top:1rem;
+    font-size:0.95rem;
+    color:#334155;
+
+    opacity:0;
+    animation: fadeUp 0.2s ease forwards 0.8s;
+}
+
+.link a {
+    text-decoration:none;
+    color:#0F172A;
+    font-weight:600;
+}
+
+.link a:hover {
+    opacity:0.7;
+}
+
+/* ANIMATION */
+@keyframes fadeUp {
+    to {
+        opacity:1;
+        transform: translateY(0);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Create Account</h2>
+
+    <form onsubmit="redirectToWelcome(event)">
+
+        <div class="field">
+            <input type="text" id="fullName" required placeholder=" ">
+            <label>Full Name</label>
+        </div>
+
+        <div class="field">
+            <input type="email" required placeholder=" ">
+            <label>Email Address</label>
+        </div>
+
+        <div class="field password-wrapper">
+            <input type="password" id="password" required placeholder=" ">
+            <label>Password</label>
+
+            <span class="toggle-password" onclick="togglePassword()">
+                <!-- 🔥 CLEAN ICON -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    <path stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>
+            </span>
+        </div>
+
+        <div class="field">
+            <input type="date" required placeholder=" ">
+            <label>Date of Birth</label>
+        </div>
+
+        <div class="field">
+            <input type="tel" placeholder=" ">
+            <label>Phone Number (optional)</label>
+        </div>
+
+        <button type="submit" class="btn-primary">Sign Up</button>
+    </form>
+
+    <div class="link">
+        Already have an account? <a href="login.html">Login</a><br>
+        <a href="CSMainPage.html">← Return Home</a>
+    </div>
+</div>
+
+<script>
+function redirectToWelcome(event) {
+    event.preventDefault();
+
+    const fullName = document.getElementById("fullName").value;
+    localStorage.setItem("userName", fullName);
+
+    window.location.href = "welcome.html";
+}
+
+function togglePassword() {
+    const password = document.getElementById("password");
+    password.type = password.type === "password" ? "text" : "password";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome - Path2Skill</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= ROOT ================= */
+:root {
+    --baby-blue: #E6F0FF;
+    --soft-purple: #EDE9FE;
+    --light-purple: #DDD6FE;
+
+    --cream: #FFFDF8;
+    --beige: #F5F1EB;
+    --white: #FFFFFF;
+
+    --text-dark: #1E293B;
+    --text-light: #64748B;
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY */
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(
+        135deg,
+        var(--cream),
+        var(--beige),
+        var(--baby-blue),
+        var(--soft-purple)
+    );
+    color: var(--text-dark);
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 5rem 2rem 3rem;
+}
+
+/* 🔥 UPDATED WELCOME TEXT (BLUR POP-IN) */
+.hero h1 {
+    font-family: 'Plus Jakarta Sans';
+    font-size: 7.3em;
+    font-weight: 800;
+    margin-bottom: 1rem;
+
+    opacity: 0;
+    transform: translateY(15px);
+    filter: blur(6px);
+
+    animation: reveal 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s forwards;
+
+    text-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+/* SUBTEXT */
+.hero p {
+    font-size: 1rem;
+    color: var(--text-light);
+    max-width: 600px;
+    margin: 0 auto 2rem;
+
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(4px);
+
+    animation: reveal 0.9s ease 0.4s forwards;
+}
+
+
+.cta-btn {
+    padding: 0.9rem 2rem;
+    border-radius: 0.7rem;
+
+    /* 🌊 Same palette → just deeper + richer */
+    background: linear-gradient(
+        135deg,
+        #D6E6FF,   /* deeper baby blue */
+        #C4D4FF,   /* richer blue-purple */
+        #DCD6F7    /* stronger soft purple */
+    );
+
+    color: #1E293B;
+
+    border: 1px solid rgba(255,255,255,0.6);
+
+    font-weight: 600;
+    cursor: pointer;
+
+    text-decoration: none;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 10px 25px rgba(99,102,241,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.5);
+
+    transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+    transform: translateY(-3px);
+
+    background: linear-gradient(
+        135deg,
+        #C4D4FF,
+        #B5C7FF,
+        #CFC7F5
+    );
+
+    box-shadow:
+        0 14px 30px rgba(99,102,241,0.25),
+        inset 0 1px 0 rgba(255,255,255,0.6);
+}
+/* ================= RECOMMENDATION SECTION ================= */
+.preview {
+    max-width: 1100px;
+    margin: 2rem auto 4rem;
+    padding: 0 2rem;
+}
+
+.preview h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* GRID */
+.preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* GLASS CARDS */
+.preview-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+
+    border-radius: 1rem;
+    padding: 1.5rem;
+
+    border: 1px solid rgba(255,255,255,0.6);
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+
+    transition: all 0.3s ease;
+}
+
+.preview-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.preview-card h3 {
+    color: #2563EB;
+    margin-bottom: 0.5rem;
+}
+
+.preview-card p {
+    font-size: 0.95rem;
+    color: var(--text-light);
+}
+
+/* FEATURES (UNCHANGED) */
+.features {
+    background: linear-gradient(
+        135deg,
+        #E6F0FF,
+        #EDE9FE,
+        #F5F1EB
+    );
+
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.feature-box {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+
+    padding: 2rem;
+    border-radius: 1rem;
+
+    max-width: 700px;
+    margin: auto;
+}
+
+/* BACK LINK */
+.back-link {
+    text-align: center;
+    margin: 2rem 0 3rem;
+}
+
+/* 🔥 ANIMATION */
+@keyframes reveal {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+        filter: blur(6px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <h1 id="welcomeText"></h1>
+
+    <p>
+        Welcome back — your journey continues. Discover new skills, refine your path,
+        and keep building momentum toward mastery.
+    </p>
+
+    <a href="CSMainPage.html" class="cta-btn">
+        Enter Platform →
+    </a>
+</section>
+
+<!-- 🔥 RECOMMENDATION SECTION -->
+<section class="preview">
+    <h2>Recommended For You</h2>
+
+    <div class="preview-grid">
+
+        <div class="preview-card">
+            <h3>JavaScript Fundamentals</h3>
+            <p>Strengthen your core coding skills with a structured learning path.</p>
+        </div>
+
+        <div class="preview-card">
+            <h3>UI Design with Figma</h3>
+            <p>Learn to design clean and modern user interfaces.</p>
+        </div>
+
+        <div class="preview-card">
+            <h3>Intro to Artificial Intelligence</h3>
+            <p>Understand how AI works and where it's applied today.</p>
+        </div>
+
+        <div class="preview-card">
+            <h3>Frontend Development Path</h3>
+            <p>Master HTML, CSS, and responsive web design.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+    <div class="feature-box">
+        <h2>Start Learning Smarter, Not Harder</h2>
+        <p>
+            Join thousands of students discovering better ways to learn, grow,
+            and build real-world skills.
+        </p>
+        <a href="CSMainPage.html" class="cta-btn">Explore Directory</a>
+    </div>
+</section>
+
+<!-- BACK -->
+<div class="back-link">
+    <a href="Login.html">← Back to Login</a>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const el = document.getElementById("welcomeText");
+
+    let fullName = localStorage.getItem("userName");
+
+    function getFirstName(name) {
+        if (!name) return "";
+        return name.trim().split(" ")[0];
+    }
+
+    let firstName = getFirstName(fullName);
+
+    el.textContent = firstName 
+        ? "Welcome Back, " + firstName 
+        : "Welcome Back";
+});
+</script>
+
+</body>
+</html>

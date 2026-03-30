@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Path2Skill</title>
+
+    <!-- Same fonts as main site -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --navy: #0A1628;
+            --electric-blue: #2563EB;
+            --bright-blue: #3B82F6;
+            --light-blue: #E6F0FF;
+            --soft-bg: #F8FAFC;
+            --text-dark: #1E293B;
+            --text-light: #64748B;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #E6F0FF, #F8FAFC);
+            color: var(--text-dark);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem 3rem;
+        }
+
+   .hero h1 {
+    font-size: 7.9rem;
+    color: var(--navy);
+    margin-bottom: 1rem;
+
+    /* subtle animation setup */
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(4px);
+
+    animation: smoothReveal 1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+@keyframes smoothReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(12px);
+        filter: blur(4px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0;
+    transform: translateY(10px);
+    animation: smoothReveal 1s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+        }
+
+        .cta-btn {
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(135deg, var(--electric-blue), var(--bright-blue));
+            color: white;
+            border: none;
+            border-radius: 0.6rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s ease;
+             opacity: 0;
+    transform: translateY(10px);
+    animation: smoothReveal 1s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+        }
+
+        /* PREVIEW SECTION */
+        .preview {
+            max-width: 1100px;
+            margin: 2rem auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .preview h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--navy);
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .preview-card {
+            background: var(--white);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid #E2E8F0;
+            transition: 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+        }
+
+        .preview-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .preview-card h3 {
+            color: var(--electric-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .preview-card p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        /* FEATURE STRIP */
+        .features {
+            background: linear-gradient(135deg, var(--electric-blue), var(--bright-blue));
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .features h2 {
+            margin-bottom: 1rem;
+        }
+
+        .features p {
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            opacity: 0.9;
+        }
+
+        .features .cta-btn {
+            background: white;
+            color: var(--electric-blue);
+        }
+
+        .features .cta-btn:hover {
+            background: rgba(255,255,255,0.9);
+        }
+
+        /* FOOTER LINK */
+        .back-link {
+            text-align: center;
+            margin: 2rem 0 3rem;
+        }
+
+        .back-link a {
+            color: var(--electric-blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .preview h2 {
+                font-size: 1.5rem;
+            }
+        }
+        
+
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1 id="welcomeText">Welcome</h1>
+        <p>To your curated gateway to mastering modern skills — built for students who want quality without the noise.</p>
+        <a href="CSMainPage.html" class="cta-btn">Enter Platform →</a>
+    </section>
+
+    <!-- PREVIEW SECTION -->
+    <section class="preview">
+        <h2>What You’ll Find Inside</h2>
+
+        <div class="preview-grid">
+
+            <div class="preview-card">
+                <h3>📚 Curated Courses</h3>
+                <p>Access hand-picked learning resources from trusted platforms like MIT, Google, and more.</p>
+            </div>
+
+            <div class="preview-card">
+                <h3>🔎 Smart Search</h3>
+                <p>Quickly find courses by skill, category, or provider with our clean filtering system.</p>
+            </div>
+
+            <div class="preview-card">
+                <h3>🎯 Structured Paths</h3>
+                <p>Follow organized learning journeys designed to take you from beginner to advanced.</p>
+            </div>
+
+            <div class="preview-card">
+                <h3>⚡ Lightweight & Fast</h3>
+                <p>No clutter. Just a fast, smooth experience focused on learning efficiency.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FEATURE STRIP -->
+    <section class="features">
+        <h2>Start Learning Smarter, Not Harder</h2>
+        <p>Join thousands of students discovering better ways to learn, grow, and build real-world skills.</p>
+        <a href="CSMainPage.html" class="cta-btn">Explore Directory</a>
+    </section>
+
+    <!-- BACK LINK -->
+    <div class="back-link">
+        <a href="Login.html">← Back to Login</a>
+    </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let fullName = localStorage.getItem("userName");
+
+    if (fullName) {
+        // Get first name only
+        let firstName = fullName.split(" ")[0];
+
+        document.getElementById("welcomeText").textContent =
+            "Welcome, " + firstName ;
+    }
+    if (!fullName) {
+    document.getElementById("welcomeText").textContent = "Welcome";
+}
+});
+</script>
+</body>
+</html>
