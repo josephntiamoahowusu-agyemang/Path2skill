@@ -9,6 +9,32 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+:root {
+    --light-bg: #F5F3FF;
+    --light-bg-2: #EDE9FE;
+    --light-bg-3: #DDD6FE;
+    --card-bg: rgba(255,255,255,0.85);
+    --text-color: #0F172A;
+    --text-label: #6B7280;
+    --border-color: #E5E7EB;
+    --input-bg: #FAFAFF;
+    --focus-color: #A78BFA;
+    --button-gradient: linear-gradient(135deg, #8B5CF6, #6D28D9);
+}
+
+html.dark-theme {
+    --light-bg: #0F172A;
+    --light-bg-2: #1E293B;
+    --light-bg-3: #334155;
+    --card-bg: rgba(30,41,59,0.95);
+    --text-color: #F1F5F9;
+    --text-label: #CBD5E1;
+    --border-color: #475569;
+    --input-bg: #1E293B;
+    --focus-color: #C4B5FD;
+    --button-gradient: linear-gradient(135deg, #A78BFA, #C084FC);
+}
+
 *{
     margin:0;
     padding:0;
@@ -21,25 +47,43 @@ body {
     display:flex;
     align-items:center;
     justify-content:center;
-
-    background: linear-gradient(135deg, #F5F3FF, #EDE9FE, #DDD6FE);
+    background: linear-gradient(135deg, var(--light-bg), var(--light-bg-2), var(--light-bg-3));
+    transition: background 0.3s ease;
 }
 
 /* CONTAINER */
 .container {
-    background: rgba(255,255,255,0.85);
-
+    background: var(--card-bg);
     padding:3rem 2.5rem;
     border-radius:1.25rem;
     width:90%;
     max-width:450px;
-
-    border:1px solid rgba(255,255,255,0.6);
+    border:1px solid rgba(255,255,255,0.1);
     box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-
     opacity:0;
     transform: translateY(25px) scale(0.96);
     animation: popIn 0.3s ease forwards;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* THEME TOGGLE */
+.theme-toggle {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 0.5rem 0.7rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
 }
 
 @keyframes popIn {
@@ -55,11 +99,11 @@ h2 {
     text-align:center;
     margin-bottom:2rem;
     font-size:1.8rem;
-    color:#0F172A;
-
+    color: var(--text-color);
     opacity:0;
     transform: translateY(10px);
     animation: fadeUp 0.3s ease forwards 0.15s;
+    transition: color 0.3s ease;
 }
 
 /* FIELD */
@@ -82,11 +126,17 @@ h2 {
 .field input {
     width:100%;
     padding:1rem;
-    border:1px solid #E5E7EB;
+    border:1px solid var(--border-color);
     border-radius:0.75rem;
     font-size:1rem;
     outline:none;
-    background:#FAFAFF;
+    background: var(--input-bg);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.field input::placeholder {
+    color: var(--text-label);
 }
 
 /* LABEL */
@@ -95,10 +145,9 @@ h2 {
     left:1rem;
     top:50%;
     transform: translateY(-50%);
-    color:#6B7280;
+    color: var(--text-label);
     font-size:0.95rem;
     pointer-events:none;
-
     transition:0.15s ease;
 }
 
@@ -107,9 +156,9 @@ h2 {
 .field input:not(:placeholder-shown) + label {
     top:0;
     transform: translateY(-50%) scale(0.85);
-    background:white;
+    background: var(--card-bg);
     padding:0 0.3rem;
-    color:#6D28D9;
+    color: var(--focus-color);
 }
 
 /* FOCUS */
@@ -151,16 +200,12 @@ h2 {
     padding:1rem;
     border:none;
     border-radius:0.75rem;
-
     font-weight:600;
     font-size:1rem;
     cursor:pointer;
-
-    background: linear-gradient(135deg, #8B5CF6, #6D28D9);
+    background: var(--button-gradient);
     color:white;
-
     transition:0.15s;
-
     opacity:0;
     transform: translateY(15px);
     animation: fadeUp 0.3s ease forwards 0.8s;
@@ -168,7 +213,7 @@ h2 {
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow:0 12px 30px rgba(139,92,246,0.3);
+    box-shadow: 0 12px 30px rgba(139,92,246,0.3);
 }
 
 /* LINKS */
@@ -176,16 +221,16 @@ h2 {
     text-align:center;
     margin-top:1rem;
     font-size:0.95rem;
-    color:#334155;
-
+    color: var(--text-label);
     opacity:0;
     animation: fadeUp 0.2s ease forwards 0.8s;
 }
 
 .link a {
     text-decoration:none;
-    color:#0F172A;
+    color: var(--text-color);
     font-weight:600;
+    transition: opacity 0.3s ease;
 }
 
 .link a:hover {
@@ -204,6 +249,8 @@ h2 {
 </head>
 
 <body>
+
+<button class="theme-toggle" id="themeToggle" title="Toggle dark mode">🌙</button>
 
 <div class="container">
     <h2>Create Account</h2>
@@ -253,12 +300,32 @@ h2 {
 </div>
 
 <script>
+// Theme toggle functionality
+const themeToggle = document.getElementById('themeToggle');
+const htmlElement = document.documentElement;
+
+// Load saved theme preference
+const savedTheme = localStorage.getItem('theme') || 'light';
+if (savedTheme === 'dark') {
+    htmlElement.classList.add('dark-theme');
+    themeToggle.textContent = '☀️';
+} else {
+    themeToggle.textContent = '🌙';
+}
+
+// Toggle theme on button click
+themeToggle.addEventListener('click', () => {
+    htmlElement.classList.toggle('dark-theme');
+    
+    const isDark = htmlElement.classList.contains('dark-theme');
+    themeToggle.textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});
+
 function redirectToWelcome(event) {
     event.preventDefault();
-
     const fullName = document.getElementById("fullName").value;
     localStorage.setItem("userName", fullName);
-
     window.location.href = "welcome.html";
 }
 

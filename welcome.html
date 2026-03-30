@@ -18,6 +18,23 @@
             --text-dark: #1E293B;
             --text-light: #64748B;
             --white: #FFFFFF;
+            --card-bg-light: #FFFFFF;
+            --border-color-light: #E2E8F0;
+            --body-bg: linear-gradient(135deg, #E6F0FF, #F8FAFC);
+        }
+
+        html.dark-theme {
+            --navy: #E2E8F0;
+            --electric-blue: #60A5FA;
+            --bright-blue: #3B82F6;
+            --light-blue: #1E3A5F;
+            --soft-bg: #0F172A;
+            --text-dark: #F1F5F9;
+            --text-light: #CBD5E1;
+            --white: #1E293B;
+            --card-bg-light: #1E293B;
+            --border-color-light: #334155;
+            --body-bg: linear-gradient(135deg, #0F172A, #1E293B);
         }
 
         * {
@@ -28,8 +45,9 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #E6F0FF, #F8FAFC);
+            background: var(--body-bg);
             color: var(--text-dark);
+            transition: background 0.3s ease;
         }
 
         h1, h2, h3 {
@@ -119,10 +137,10 @@
         }
 
         .preview-card {
-            background: var(--white);
+            background: var(--card-bg-light);
             border-radius: 1rem;
             padding: 1.5rem;
-            border: 1px solid #E2E8F0;
+            border: 1px solid var(--border-color-light);
             transition: 0.3s ease;
             box-shadow: 0 8px 25px rgba(0,0,0,0.05);
         }
@@ -185,6 +203,31 @@
             text-decoration: underline;
         }
 
+        /* THEME TOGGLE */
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--white);
+            border: 1px solid var(--border-color-light);
+            border-radius: 0.6rem;
+            padding: 0.6rem 0.8rem;
+            cursor: pointer;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        html.dark-theme .theme-toggle {
+            background: var(--white);
+            color: var(--soft-bg);
+        }
+
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .hero h1 {
@@ -200,6 +243,8 @@
     </style>
 </head>
 <body>
+
+    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">🌙</button>
 
     <!-- HERO -->
     <section class="hero">
@@ -249,19 +294,37 @@
         <a href="Login.html">← Back to Login</a>
     </div>
 <script>
+// Theme toggle functionality
+const themeToggle = document.getElementById('themeToggle');
+const htmlElement = document.documentElement;
+
+// Load saved theme preference
+const savedTheme = localStorage.getItem('theme') || 'light';
+if (savedTheme === 'dark') {
+    htmlElement.classList.add('dark-theme');
+    themeToggle.textContent = '☀️';
+} else {
+    themeToggle.textContent = '🌙';
+}
+
+// Toggle theme on button click
+themeToggle.addEventListener('click', () => {
+    htmlElement.classList.toggle('dark-theme');
+    
+    const isDark = htmlElement.classList.contains('dark-theme');
+    themeToggle.textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});
+
 document.addEventListener("DOMContentLoaded", function () {
     let fullName = localStorage.getItem("userName");
-
     if (fullName) {
-        // Get first name only
         let firstName = fullName.split(" ")[0];
-
-        document.getElementById("welcomeText").textContent =
-            "Welcome, " + firstName ;
+        document.getElementById("welcomeText").textContent = "Welcome, " + firstName;
     }
     if (!fullName) {
-    document.getElementById("welcomeText").textContent = "Welcome";
-}
+        document.getElementById("welcomeText").textContent = "Welcome";
+    }
 });
 </script>
 </body>
