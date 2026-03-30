@@ -210,7 +210,7 @@
             right: 0;
             background: var(--white);
             border-bottom: 1px solid var(--border-light);
-            padding: 1rem 2rem;
+            padding: 1rem;
             flex-direction: column;
             gap: 1rem;
         }
@@ -403,7 +403,8 @@
         .directory {
             max-width: 1280px;
             margin: 4rem auto;
-            padding: 0 2rem;
+            padding: 0 1.5rem;
+            width: 100%;
         }
 
         .section-header {
@@ -617,9 +618,10 @@
         .cta-banner {
             background: linear-gradient(135deg, var(--electric-blue), var(--bright-blue));
             color: var(--white);
-            padding: 3rem 2rem;
+            padding: 2.5rem 1.5rem;
             text-align: center;
             margin: 4rem 0;
+            width: 100%;
         }
 
         .cta-banner h2 {
@@ -649,8 +651,9 @@
         .institutions {
             max-width: 1280px;
             margin: 4rem auto;
-            padding: 3rem 2rem;
+            padding: 2.5rem 1.5rem;
             text-align: center;
+            width: 100%;
         }
 
         .institutions-label {
@@ -685,8 +688,9 @@
         footer {
             background: var(--navy);
             color: var(--white);
-            padding: 3rem 2rem 1rem;
+            padding: 2.5rem 1.5rem 1rem;
             margin-top: 4rem;
+            width: 100%;
         }
 
         .footer-content {
@@ -895,6 +899,15 @@
             .cta-banner p {
                 font-size: 0.95rem;
             }
+
+            .institutions {
+                padding: 2rem 1rem;
+            }
+
+            footer {
+                padding: 2rem 1rem 1rem;
+                width: 100%;
+            }
         }
 
         @media (max-width: 480px) {
@@ -944,6 +957,51 @@
 
             .institution-logo {
                 font-size: 0.9rem;
+            }
+
+            .directory {
+                padding: 0 0.75rem;
+                margin: 2rem auto;
+            }
+
+            .search-bar {
+                flex-direction: column;
+                gap: 0.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .search-bar input,
+            .search-bar select {
+                width: 100%;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .institutions {
+                padding: 1.5rem 0.75rem;
+            }
+
+            .cta-banner {
+                padding: 1.5rem 0.75rem;
+                margin: 1.5rem 0;
+            }
+
+            .cta-banner h2 {
+                font-size: 1.2rem;
+            }
+
+            footer {
+                padding: 1.5rem 0.75rem 0.75rem;
+            }
+
+            body {
+                overflow-x: hidden;
+            }
+
+            html, body {
+                width: 100%;
             }
         }
         /* PANEL BACKGROUND */
@@ -1326,7 +1384,7 @@
                 hours: "Self-paced",
                 description: "A comprehensive guide to learning JavaScript from basics to advanced concepts with interactive examples.",
                 category: "javascript",
-                link: "#"
+                link: "course-lesson.html?course=the-modern-javascript-tutorial"
             },
             {
                 title: "Interaction Design Foundation",
@@ -1335,7 +1393,7 @@
                 hours: "40 hours",
                 description: "Learn the principles of interaction design and create better digital experiences for users.",
                 category: "design",
-                link: "#"
+                link: "course-lesson.html?course=interaction-design-foundation"
             },
             {
                 title: "Elements of AI",
@@ -1344,7 +1402,7 @@
                 hours: "30 hours",
                 description: "An accessible introduction to artificial intelligence and machine learning concepts for everyone.",
                 category: "ai",
-                link: "#"
+                link: "course-lesson.html?course=elements-of-ai"
             },
             {
                 title: "Deep JavaScript Foundations",
@@ -1353,7 +1411,7 @@
                 hours: "10 hours",
                 description: "Dive deep into the core concepts of JavaScript that every developer should understand.",
                 category: "javascript",
-                link: "#"
+                link: "course-lesson.html?course=deep-javascript-foundations"
             },
             {
                 title: "Figma for UI Designers",
@@ -1362,7 +1420,7 @@
                 hours: "13 hours",
                 description: "Master Figma and design stunning user interfaces with this comprehensive tutorial course.",
                 category: "design",
-                link: "#"
+                link: "course-lesson.html?course=figma-for-ui-designers"
             },
             {
                 title: "Career Essentials in Generative AI",
@@ -1371,7 +1429,7 @@
                 hours: "5 hours",
                 description: "Understand how generative AI is transforming careers and industries in this practical course.",
                 category: "ai",
-                link: "#"
+                link: "course-lesson.html?course=career-essentials-in-generative-ai"
             },
             {
                 title: "Technical Resume Masterclass",
@@ -1380,7 +1438,7 @@
                 hours: "2 hours",
                 description: "Learn how to write a resume that gets you noticed by top tech companies and recruiters.",
                 category: "career",
-                link: "#"
+                link: "course-lesson.html?course=technical-resume-masterclass"
             },
             {
                 title: "Functional-Light JavaScript",
@@ -1389,7 +1447,7 @@
                 hours: "12 hours",
                 description: "Learn functional programming principles and how to apply them in modern JavaScript development.",
                 category: "javascript",
-                link: "#"
+                link: "course-lesson.html?course=functional-light-javascript"
             },
             {
                 title: "The AI Product Manager",
@@ -1398,7 +1456,7 @@
                 hours: "25 hours",
                 description: "Develop the skills needed to lead AI products and navigate the intersection of AI and business.",
                 category: "ai",
-                link: "#"
+                link: "course-lesson.html?course=the-ai-product-manager"
             }
         ];
 

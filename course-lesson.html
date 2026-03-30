@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <title>Course Lessons - Path2Skill</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0A1628;
+            --electric-blue: #2563EB;
+            --bright-blue: #3B82F6;
+            --light-bg: #F8FAFC;
+            --text-dark: #1E293B;
+            --text-light: #64748B;
+            --border-light: #E2E8F0;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+        }
+
+        html.dark-theme {
+            --navy: #E2E8F0;
+            --electric-blue: #60A5FA;
+            --bright-blue: #3B82F6;
+            --light-bg: #0F172A;
+            --text-dark: #F1F5F9;
+            --text-light: #CBD5E1;
+            --border-light: #334155;
+            --white: #1E293B;
+            --success: #10B981;
+            --warning: #F59E0B;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* ========== HEADER ========== */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--border-light);
+            padding: 1rem 1.5rem;
+            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-section a {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--navy);
+            text-decoration: none;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1rem;
+            background: var(--light-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 0.6rem;
+            color: var(--electric-blue);
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: var(--electric-blue);
+            color: var(--white);
+        }
+
+        /* ========== THEME TOGGLE ========== */
+        .theme-toggle {
+            position: fixed;
+            top: 1.2rem;
+            right: 2rem;
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: 0.6rem;
+            padding: 0.6rem 0.8rem;
+            cursor: pointer;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* ========== COURSE HEADER ========== */
+        .course-hero {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            width: 100%;
+        }
+
+        .course-hero h1 {
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .difficulty-badge {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .badge-beginner {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .badge-intermediate {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        .badge-advanced {
+            background: rgba(239, 68, 68, 0.1);
+            color: #EF4444;
+        }
+
+        .course-description {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 1rem 0;
+            line-height: 1.7;
+        }
+
+        /* ========== LESSONS SECTION ========== */
+        .lessons-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            width: 100%;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .lesson-card {
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-color: var(--electric-blue);
+        }
+
+        .lesson-number {
+            display: inline-block;
+            background: var(--light-bg);
+            color: var(--electric-blue);
+            font-weight: 700;
+            padding: 0.4rem 0.8rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .lesson-card h3 {
+            font-size: 1.2rem;
+            color: var(--navy);
+            margin-bottom: 0.75rem;
+        }
+
+        .lesson-card p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .lesson-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .lesson-duration {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .lesson-button {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: var(--electric-blue);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .lesson-button:hover {
+            background: var(--bright-blue);
+            transform: translateY(-2px);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            header {
+                padding: 0.75rem 1rem;
+            }
+
+            .header-container {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .course-hero {
+                padding: 1.5rem 1rem;
+            }
+
+            .course-hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .lessons-container {
+                padding: 1.5rem 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .lessons-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .theme-toggle {
+                top: 0.8rem;
+                right: 1rem;
+                padding: 0.5rem 0.6rem;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 0.5rem;
+            }
+
+            .logo-section a {
+                font-size: 1.1rem;
+            }
+
+            .back-button {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .course-hero {
+                padding: 1rem;
+            }
+
+            .course-hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .course-meta {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .lessons-container {
+                padding: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+            .lesson-card {
+                padding: 1rem;
+            }
+
+            .lesson-card h3 {
+                font-size: 1rem;
+            }
+
+            .lesson-card p {
+                font-size: 0.9rem;
+            }
+
+            .theme-toggle {
+                top: 0.6rem;
+                right: 0.6rem;
+                padding: 0.4rem 0.5rem;
+                font-size: 1rem;
+            }
+        }
+
+        html, body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- THEME TOGGLE -->
+    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">🌙</button>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <a href="CSMainPage.html" class="back-button">← Back to Directory</a>
+            </div>
+            <a href="CSMainPage.html" style="text-decoration: none; color: var(--navy);">
+                <div style="font-size: 1.3rem; font-weight: 800;">Path2Skill</div>
+            </a>
+        </div>
+    </header>
+
+    <!-- COURSE HERO -->
+    <section class="course-hero">
+        <h1 id="courseTitle">Course Title</h1>
+        <div class="course-meta">
+            <span class="meta-item">
+                <span class="difficulty-badge" id="difficultyBadge">Beginner</span>
+            </span>
+            <span class="meta-item">📚 <span id="courseDuration">Self-paced</span></span>
+            <span class="meta-item">🏫 <span id="courseProvider">Provider</span></span>
+        </div>
+        <p class="course-description" id="courseDescription">Course description will appear here</p>
+    </section>
+
+    <!-- LESSONS SECTION -->
+    <section class="lessons-container">
+        <h2 class="section-title">Beginner Lessons</h2>
+        <p class="section-subtitle">Start your learning journey with these foundational lessons</p>
+        <div class="lessons-grid" id="lessonsGrid">
+            <!-- Lessons will be dynamically inserted here -->
+        </div>
+    </section>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+
+        // Load saved theme preference
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark') {
+            htmlElement.classList.add('dark-theme');
+            themeToggle.textContent = '☀️';
+        } else {
+            themeToggle.textContent = '🌙';
+        }
+
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark-theme');
+            
+            const isDark = htmlElement.classList.contains('dark-theme');
+            themeToggle.textContent = isDark ? '☀️' : '🌙';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // Course lessons data for each course
+        const courseLessons = {
+            "the-modern-javascript-tutorial": {
+                title: "The Modern JavaScript Tutorial",
+                provider: "javascript.info",
+                difficulty: "beginner",
+                hours: "Self-paced",
+                description: "A comprehensive guide to learning JavaScript from basics to advanced concepts with interactive examples.",
+                lessons: [
+                    {
+                        title: "Introduction to JavaScript",
+                        description: "Learn what JavaScript is, where it's used, and why it's essential for web development.",
+                        duration: "15 min"
+                    },
+                    {
+                        title: "Variables and Data Types",
+                        description: "Understand how to declare variables and work with different data types in JavaScript.",
+                        duration: "25 min"
+                    },
+                    {
+                        title: "Operators and Expressions",
+                        description: "Master arithmetic, logical, and comparison operators to build powerful expressions.",
+                        duration: "20 min"
+                    },
+                    {
+                        title: "Control Flow Basics",
+                        description: "Learn about if statements, loops, and how to control program execution flow.",
+                        duration: "30 min"
+                    },
+                    {
+                        title: "Functions Fundamentals",
+                        description: "Create reusable code blocks using functions and understand function scope.",
+                        duration: "28 min"
+                    },
+                    {
+                        title: "Working with Strings",
+                        description: "Master string manipulation, concatenation, and template literals.",
+                        duration: "22 min"
+                    }
+                ]
+            },
+            "interaction-design-foundation": {
+                title: "Interaction Design Foundation",
+                provider: "IxDF",
+                difficulty: "intermediate",
+                hours: "40 hours",
+                description: "Learn the principles of interaction design and create better digital experiences for users.",
+                lessons: [
+                    {
+                        title: "What is Interaction Design?",
+                        description: "Understand the core principles and philosophy of interaction design.",
+                        duration: "18 min"
+                    },
+                    {
+                        title: "User Research Methods",
+                        description: "Learn how to gather insights about users through various research techniques.",
+                        duration: "35 min"
+                    },
+                    {
+                        title: "User Personas and Journey Maps",
+                        description: "Create detailed user personas and map their journey through your design.",
+                        duration: "30 min"
+                    },
+                    {
+                        title: "Information Architecture",
+                        description: "Organize and structure information to enhance usability and navigation.",
+                        duration: "32 min"
+                    },
+                    {
+                        title: "Wireframing Essentials",
+                        description: "Create wireframes to plan layouts and user flows effectively.",
+                        duration: "28 min"
+                    },
+                    {
+                        title: "Prototyping and Testing",
+                        description: "Build interactive prototypes and test them with real users.",
+                        duration: "40 min"
+                    }
+                ]
+            },
+            "elements-of-ai": {
+                title: "Elements of AI",
+                provider: "University of Helsinki",
+                difficulty: "beginner",
+                hours: "30 hours",
+                description: "An accessible introduction to artificial intelligence and machine learning concepts for everyone.",
+                lessons: [
+                    {
+                        title: "AI Basics",
+                        description: "Get an overview of artificial intelligence and its applications in the real world.",
+                        duration: "20 min"
+                    },
+                    {
+                        title: "Philosophy and Ethics of AI",
+                        description: "Explore the philosophical implications and ethical considerations of AI.",
+                        duration: "25 min"
+                    },
+                    {
+                        title: "Machine Learning Fundamentals",
+                        description: "Understand how machines learn from data and recognize patterns.",
+                        duration: "30 min"
+                    },
+                    {
+                        title: "Neural Networks Introduction",
+                        description: "Learn how neural networks mimic the human brain to process information.",
+                        duration: "28 min"
+                    },
+                    {
+                        title: "AI in Practice",
+                        description: "See real-world examples of AI applications in various industries.",
+                        duration: "22 min"
+                    },
+                    {
+                        title: "The Future of AI",
+                        description: "Explore emerging trends and the future possibilities of artificial intelligence.",
+                        duration: "18 min"
+                    }
+                ]
+            },
+            "deep-javascript-foundations": {
+                title: "Deep JavaScript Foundations",
+                provider: "Frontend Masters",
+                difficulty: "advanced",
+                hours: "10 hours",
+                description: "Dive deep into the core concepts of JavaScript that every developer should understand.",
+                lessons: [
+                    {
+                        title: "Types and Type Coercion",
+                        description: "Master JavaScript's type system and understand how type coercion works.",
+                        duration: "25 min"
+                    },
+                    {
+                        title: "Scope and Closure",
+                        description: "Understand lexical scope and closures - two of the most important concepts in JS.",
+                        duration: "35 min"
+                    },
+                    {
+                        title: "This Binding",
+                        description: "Learn how the 'this' keyword works in different contexts.",
+                        duration: "28 min"
+                    },
+                    {
+                        title: "Prototypes and Delegation",
+                        description: "Understand JavaScript's prototype-based inheritance model.",
+                        duration: "32 min"
+                    },
+                    {
+                        title: "Async and Promises",
+                        description: "Master asynchronous programming with callbacks, promises, and async/await.",
+                        duration: "40 min"
+                    }
+                ]
+            },
+            "figma-for-ui-designers": {
+                title: "Figma for UI Designers",
+                provider: "Figma Mastery",
+                difficulty: "beginner",
+                hours: "13 hours",
+                description: "Master Figma and design stunning user interfaces with this comprehensive tutorial course.",
+                lessons: [
+                    {
+                        title: "Figma Workspace Overview",
+                        description: "Get familiar with the Figma interface and tools.",
+                        duration: "15 min"
+                    },
+                    {
+                        title: "Creating Basic Shapes",
+                        description: "Learn to draw and manipulate shapes in Figma.",
+                        duration: "20 min"
+                    },
+                    {
+                        title: "Working with Text",
+                        description: "Master typography and text styling in your designs.",
+                        duration: "18 min"
+                    },
+                    {
+                        title: "Components and Styles",
+                        description: "Create reusable components and maintain design consistency.",
+                        duration: "30 min"
+                    },
+                    {
+                        title: "Prototyping Interactions",
+                        description: "Build interactive prototypes to showcase your design flows.",
+                        duration: "28 min"
+                    },
+                    {
+                        title: "Collaboration and Handoff",
+                        description: "Learn how to collaborate with team members and hand off to developers.",
+                        duration: "22 min"
+                    }
+                ]
+            },
+            "career-essentials-in-generative-ai": {
+                title: "Career Essentials in Generative AI",
+                provider: "Microsoft & LinkedIn",
+                difficulty: "intermediate",
+                hours: "5 hours",
+                description: "Understand how generative AI is transforming careers and industries in this practical course.",
+                lessons: [
+                    {
+                        title: "What is Generative AI?",
+                        description: "Understand the basics of generative AI and how it differs from traditional AI.",
+                        duration: "15 min"
+                    },
+                    {
+                        title: "Impact on Different Industries",
+                        description: "Explore how generative AI is transforming various sectors.",
+                        duration: "20 min"
+                    },
+                    {
+                        title: "Using AI Tools Effectively",
+                        description: "Learn best practices for working with generative AI tools.",
+                        duration: "22 min"
+                    },
+                    {
+                        title: "New Career Opportunities",
+                        description: "Discover emerging roles and opportunities in the AI industry.",
+                        duration: "18 min"
+                    }
+                ]
+            },
+            "technical-resume-masterclass": {
+                title: "Technical Resume Masterclass",
+                provider: "CareerCup",
+                difficulty: "beginner",
+                hours: "2 hours",
+                description: "Learn how to write a resume that gets you noticed by top tech companies and recruiters.",
+                lessons: [
+                    {
+                        title: "Resume Fundamentals",
+                        description: "Learn the basics of creating an effective technical resume.",
+                        duration: "12 min"
+                    },
+                    {
+                        title: "Highlighting Your Skills",
+                        description: "Master how to showcase your technical skills to make an impact.",
+                        duration: "18 min"
+                    },
+                    {
+                        title: "Project Showcase",
+                        description: "Learn how to describe your projects to demonstrate your abilities.",
+                        duration: "15 min"
+                    },
+                    {
+                        title: "ATS Optimization",
+                        description: "Understand how to format your resume for Applicant Tracking Systems.",
+                        duration: "10 min"
+                    },
+                    {
+                        title: "Common Mistakes to Avoid",
+                        description: "Learn what not to do and avoid resume red flags.",
+                        duration: "8 min"
+                    }
+                ]
+            },
+            "functional-light-javascript": {
+                title: "Functional-Light JavaScript",
+                provider: "Kyle Simpson",
+                difficulty: "intermediate",
+                hours: "12 hours",
+                description: "Learn functional programming principles and how to apply them in modern JavaScript development.",
+                lessons: [
+                    {
+                        title: "Functional Programming Concepts",
+                        description: "Understand the core principles of functional programming.",
+                        duration: "22 min"
+                    },
+                    {
+                        title: "Pure Functions",
+                        description: "Learn what makes functions pure and why it matters.",
+                        duration: "20 min"
+                    },
+                    {
+                        title: "First-Class Functions",
+                        description: "Understand how to treat functions as first-class citizens.",
+                        duration: "25 min"
+                    },
+                    {
+                        title: "Higher-Order Functions",
+                        description: "Master functions that take or return other functions.",
+                        duration: "28 min"
+                    },
+                    {
+                        title: "Function Composition",
+                        description: "Learn how to compose functions to build complex operations.",
+                        duration: "30 min"
+                    },
+                    {
+                        title: "Real-World Applications",
+                        description: "Apply functional programming concepts to practical JavaScript projects.",
+                        duration: "35 min"
+                    }
+                ]
+            },
+            "the-ai-product-manager": {
+                title: "The AI Product Manager",
+                provider: "Udacity",
+                difficulty: "intermediate",
+                hours: "25 hours",
+                description: "Develop the skills needed to lead AI products and navigate the intersection of AI and business.",
+                lessons: [
+                    {
+                        title: "Role of an AI Product Manager",
+                        description: "Understand the unique responsibilities and challenges of managing AI products.",
+                        duration: "20 min"
+                    },
+                    {
+                        title: "AI Fundamentals for PMs",
+                        description: "Learn essential AI concepts every product manager should know.",
+                        duration: "30 min"
+                    },
+                    {
+                        title: "Data Strategy and Ethics",
+                        description: "Explore how to build AI products responsibly with proper data strategy.",
+                        duration: "35 min"
+                    },
+                    {
+                        title: "AI Product Roadmap",
+                        description: "Learn how to plan and execute an effective AI product roadmap.",
+                        duration: "28 min"
+                    },
+                    {
+                        title: "Metrics and Evaluation",
+                        description: "Master how to measure success for AI-powered products.",
+                        duration: "25 min"
+                    },
+                    {
+                        title: "Launch Strategy",
+                        description: "Develop a go-to-market strategy for your AI product.",
+                        duration: "32 min"
+                    }
+                ]
+            }
+        };
+
+        // Get course from URL parameter
+        function getCourseFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('course') || 'the-modern-javascript-tutorial';
+        }
+
+        // Render the course and lessons
+        function renderCourse() {
+            const courseKey = getCourseFromURL();
+            const courseData = courseLessons[courseKey];
+
+            if (!courseData) {
+                document.querySelector('.course-hero').innerHTML = '<h1>Course not found</h1>';
+                return;
+            }
+
+            // Set course details
+            document.getElementById('courseTitle').textContent = courseData.title;
+            document.getElementById('courseProvider').textContent = courseData.provider;
+            document.getElementById('courseDuration').textContent = courseData.hours;
+            document.getElementById('courseDescription').textContent = courseData.description;
+
+            // Set difficulty badge
+            const diffBadge = document.getElementById('difficultyBadge');
+            diffBadge.textContent = courseData.difficulty.charAt(0).toUpperCase() + courseData.difficulty.slice(1);
+            diffBadge.className = `difficulty-badge badge-${courseData.difficulty}`;
+
+            // Render lessons
+            const lessonsGrid = document.getElementById('lessonsGrid');
+            lessonsGrid.innerHTML = '';
+
+            courseData.lessons.forEach((lesson, index) => {
+                const lessonCard = document.createElement('div');
+                lessonCard.className = 'lesson-card';
+                lessonCard.innerHTML = `
+                    <span class="lesson-number">Lesson ${index + 1}</span>
+                    <h3>${lesson.title}</h3>
+                    <p>${lesson.description}</p>
+                    <div class="lesson-footer">
+                        <span class="lesson-duration">⏱️ ${lesson.duration}</span>
+                        <button class="lesson-button" onclick="startLesson('${lesson.title}')">Start</button>
+                    </div>
+                `;
+                lessonsGrid.appendChild(lessonCard);
+            });
+        }
+
+        // Start a lesson (placeholder function)
+        function startLesson(lessonTitle) {
+            alert(`Starting lesson: ${lessonTitle}\n\nThis would open the lesson content in your learning platform.`);
+        }
+
+        // Render course on page load
+        renderCourse();
+    </script>
+
+</body>
+</html>
